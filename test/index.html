@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>test</title>
+</head>
+<body>
+<a href="javascript:void(0);" id="test">test</a>
+<script src="http://1.url.cn/jslib/requirejs/2.1.6/require.min.js"></script>
+<script src="http://1.url.cn/jslib/jquery/1.9.1/jquery.min.js"></script>
+<script src="../try.js"></script>
+<script>
+require(['./main'], function (main) {
+	main.init();
+});
+</script>
+</body>
+</html>
