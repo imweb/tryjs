@@ -38,10 +38,19 @@
         }
     }
 
+    function merge(org, obj) {
+        var key;
+        for (key in obj) {
+            org[key] = obj[key];
+        }
+    }
+
     // try catch
     if (_require && _define) {
         root.require = makeArgsTry(_require);
+        merge(root.require, _require);
         root.define = makeArgsTry(_define);
+        merge(root.define, _define);
     }
 
     if (_add) {
