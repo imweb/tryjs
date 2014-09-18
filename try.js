@@ -4,6 +4,7 @@
         _setTimeout = root.setTimeout,
         _setInterval = root.setInterval,
         _add = root.jQuery && root.jQuery.event.add,
+        _ajax = root.jQuery && root.jQuery.ajax,
         _onthrow = root.onthrow || function (e) {
             if (console) {
                 console.error(e.stack);
@@ -38,6 +39,15 @@
         }
     }
 
+    function makeObjTry(obj) {
+        var key, value;
+        for (key in obj) {
+            value = obj[key];
+            if (_isFunction(value)) obj[key] = makeTry(value);
+        }
+        return obj;
+    }
+
     function merge(org, obj) {
         var key;
         for (key in obj) {
@@ -55,6 +65,18 @@
 
     if (_add) {
         root.jQuery.event.add = makeArgsTry(_add);
+    }
+
+    if (_ajax) {
+        root.jQuery.ajax = function (url, setting) {
+            if (!setting) {
+                setting = url;
+                url = undefined;
+            }
+            makeObjTry(setting);
+            if (url) return _ajax.call(root.jQuery, url, setting);
+            return _ajax.call(root.jQuery, setting);
+        }
     }
 
     root.setTimeout = makeArgsTry(_setTimeout);
