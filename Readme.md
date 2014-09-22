@@ -37,4 +37,5 @@ setTimeout(
 * setTimeout
 * setInterval
 * jQuery event add
+* jQuery ajax
 * require & define
