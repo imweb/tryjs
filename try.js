@@ -7,7 +7,9 @@
         _ajax = root.jQuery && root.jQuery.ajax,
         _onthrow = root.onthrow || function (e) {
             if (console) {
-                console.error(e.stack);
+                console.error(
+                    e.stack.split('\n').slice(0, 4).join('\n')
+                );
             } else {
                 throw e;
             }
