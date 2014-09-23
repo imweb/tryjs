@@ -5,6 +5,7 @@
         _setInterval = root.setInterval,
         _add = root.jQuery && root.jQuery.event.add,
         _ajax = root.jQuery && root.jQuery.ajax,
+        // when throw a error
         _onthrow = root.onthrow || function (e) {
             if (console) {
                 console.error(
@@ -15,10 +16,18 @@
             }
         };
 
+    // function or not
     function _isFunction (foo) {
         return typeof foo === 'function';
     }
 
+    /**
+     * makeTry
+     * wrap a function with try & catch
+     * @param {Function} foo
+     * @param {Object} self
+     * @returns {Function}
+     */
     function makeTry(foo, self) {
         return function () {
             try {
@@ -29,6 +38,13 @@
         };
     }
 
+    /**
+     * makeArgsTry
+     * wrap a function's arguments with try & catch
+     * @param {Function} foo
+     * @param {Object} self
+     * @returns {Function}
+     */
     function makeArgsTry(foo, self) {
         return function () {
             var arg, args = [];
@@ -41,6 +57,13 @@
         }
     }
 
+    /**
+     * makeObjTry
+     * wrap a object's all value with try & catch
+     * @param {Function} foo
+     * @param {Object} self
+     * @returns {Function}
+     */
     function makeObjTry(obj) {
         var key, value;
         for (key in obj) {
@@ -50,6 +73,7 @@
         return obj;
     }
 
+    // just merge
     function merge(org, obj) {
         var key;
         for (key in obj) {
