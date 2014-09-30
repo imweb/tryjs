@@ -31,7 +31,7 @@
     function makeTry(foo, self) {
         return function () {
             try {
-                return foo.apply(self || null, arguments);
+                return foo.apply(self || this, arguments);
             } catch (e) {
                 _onthrow(e);
             }
@@ -53,7 +53,7 @@
                 _isFunction(arg) && (arg = makeTry(arg));
                 args.push(arg);
             }
-            return foo.apply(self || null, args);
+            return foo.apply(self || this, args);
         }
     }
 
