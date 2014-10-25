@@ -11,6 +11,14 @@
 <script>
 require(['./main.js'], function (main) {
 	main.init();
+
+	setTimeout(function(){
+		alert(xx);
+	}, 1000);
+
+	setInterval(function(){
+		alert(oo);
+	}, 1000);
 });
 </script>
 </body>
