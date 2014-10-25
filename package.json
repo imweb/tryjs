@@ -1,0 +1,29 @@
+{
+  "name": "tryjs",
+  "version": "1.0.0",
+  "description": "tryjs =====",
+  "main": "Gulpfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "gulp": "^3.8.9",
+    "gulp-jsbeautifier": "^0.0.3",
+    "map-stream": "^0.1.0",
+    "micro-tpl": "^0.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miniflycn/tryjs.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miniflycn/tryjs/issues"
+  },
+  "homepage": "https://github.com/miniflycn/tryjs"
+}
