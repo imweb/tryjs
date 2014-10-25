@@ -9,5 +9,3 @@ function catArgs(foo) {
         return foo.apply(this, args);
     }
 }
-
-tryjs.catArgs = catArgs;

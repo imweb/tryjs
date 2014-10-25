@@ -1,6 +1,4 @@
 ! function(root) {
-    var tryjs = root.tryjs = {};
-
     var _onthrow = function(e) {
         console.error(e);
     }
@@ -28,8 +26,6 @@
         };
     }
 
-    tryjs.cat = cat;
-
     function catArgs(foo) {
         return function() {
             var arg, args = [];
@@ -41,8 +37,6 @@
             return foo.apply(this, args);
         }
     }
-
-    tryjs.catArgs = catArgs;
 
     function catTimeout(foo) {
         return function(cb, timeout) {

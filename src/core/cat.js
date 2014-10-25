@@ -7,5 +7,3 @@ function cat(foo) {
         }
     };
 }
-
-tryjs.cat = cat;
