@@ -1,7 +1,8 @@
 ! function(root) {
+
     var _onthrow = function(e) {
         console.error(e);
-    }
+    };
 
     // merge
     function _merge(org, obj) {

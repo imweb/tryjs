@@ -1,4 +1,5 @@
 {
     "AMD": true,
-    "jQuery": true
+    "jQuery": true,
+    "throwTo": "default"
 }
