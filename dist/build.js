@@ -32,7 +32,7 @@
             var arg, args = [];
             for (var i = 0, l = arguments.length; i < l; i++) {
                 arg = arguments[i];
-                _isFunction(arg) && (arg = makeTry(arg));
+                _isFunction(arg) && (arg = cat(arg));
                 args.push(arg);
             }
             return foo.apply(this, args);
@@ -62,9 +62,15 @@
     var _require = root.require,
         _define = root.define;
     if (_require && _define) {
+<<<<<<< HEAD
         root.require = makeArgsTry(_require);
         _merge(root.require, _require);
         root.define = makeArgsTry(_define);
+=======
+        root.require = catArgs(_require);
+        _merge(root.require, _require);
+        root.define = catArgs(_define);
+>>>>>>> 7064d1b988665003a87703526ce9be3639cc3d3e
         _merge(root.define, _define);
     }
 
