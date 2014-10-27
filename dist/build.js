@@ -1,7 +1,11 @@
 ! function(root) {
 
     var _onthrow = function(e) {
-        console.error(e);
+        root.console ?
+
+        console.error(e) :
+
+        alert(e);
     };
 
     // merge
