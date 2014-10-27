@@ -9,6 +9,7 @@ function catTimeout(foo) {
     		}
     	}
     	var args = [].slice.apply(arguments, 2);
+    	// for setTimeout(function, delay, param1, ...)
         cb = cat(cb, args.length && args);
         foo(cb, timeout);
     }
