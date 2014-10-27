@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Tryjs by QQEDU</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Tryjs</h1>
+        <p></p>
+
+        <p class="view"><a href="https://github.com/QQEDU/tryjs">View the Project on GitHub <small>QQEDU/tryjs</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/QQEDU/tryjs/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/QQEDU/tryjs/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/QQEDU/tryjs">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="tryjs" class="anchor" href="#tryjs"><span class="octicon octicon-link"></span></a>tryjs</h1>
+
+<blockquote>
+<p>window.onerror在webkit中对于跨域的脚本错误无法捕获其stack，经常让我们无法定位上报的问题，tryjs利用try-catch将函数包裹起来，让错误捕获变得容易。</p>
+</blockquote>
+
+<h2>
+<a name="%E5%8E%9F%E7%90%86" class="anchor" href="#%E5%8E%9F%E7%90%86"><span class="octicon octicon-link"></span></a>原理</h2>
+
+<p>对于基于AMD和jQuery的网站，几乎所有业务函数都是通过回调异步触发的，所以我们只需要将所有异步函数包裹起来就可以捕获到大部分错误。</p>
+
+<p>例如，对于require函数，一般是这样使用的：</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">require</span><span class="p">([</span><span class="s1">'./main'</span><span class="p">],</span>
+    <span class="c1">// 想办法把这个函数包裹起来 </span>
+    <span class="kd">function</span> <span class="p">(</span><span class="nx">main</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 实际上这里才是在调用</span>
+        <span class="nx">main</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+    <span class="p">});</span>
+</pre></div>
+
+<p>类似的对于setTimeout函数，一般可以这样：</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">setTimeout</span><span class="p">(</span>
+    <span class="c1">// 想办法把这个函数包裹起来就行了</span>
+    <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">dosomthing</span><span class="p">();</span>
+    <span class="p">},</span> 
+    <span class="mi">1000</span>
+<span class="p">);</span>
+</pre></div>
+
+<h2>
+<a name="%E5%8C%85%E8%A3%B9%E4%BA%86%E4%BB%80%E4%B9%88" class="anchor" href="#%E5%8C%85%E8%A3%B9%E4%BA%86%E4%BB%80%E4%B9%88"><span class="octicon octicon-link"></span></a>包裹了什么？</h2>
+
+<ul>
+<li>setTimeout</li>
+<li>setInterval</li>
+<li>jQuery event add</li>
+<li>jQuery ajax</li>
+<li>require &amp; define</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/QQEDU">QQEDU</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
