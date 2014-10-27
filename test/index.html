@@ -2,25 +2,24 @@
 <html>
 <head>
 <title>test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="mocha.css" />
 </head>
 <body>
-<a href="javascript:void(0);" id="test">test</a>
+<div id="mocha"></div>
+<script src="mocha.js"></script>
+<script src="expect.js"></script>
+<script>
+	mocha.ui('bdd');
+	mocha.reporter('html');
+</script>
 <script src="http://1.url.cn/jslib/requirejs/2.1.6/require.min.js"></script>
 <script src="http://1.url.cn/jslib/jquery/1.9.1/jquery.min.js"></script>
 <script src="../dist/build.js"></script>
+<script src="test.js"></script>
 <script>
-require(['./main.js'], function (main) {
-	main.init();
-
-	setTimeout(function(){
-		alert(xx);
-	}, 1000);
-
-	var ii = setInterval(function(){
-		clearInterval(ii);
-		alert(oo);
-	}, 1000);
-});
+if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
+else { mocha.run(); }
 </script>
 </body>
 </html>
