@@ -49,7 +49,7 @@
                     _onthrow(e);
                 }
             }
-            var args = [].slice.apply(arguments, 2);
+            var args = [].slice.call(arguments, 2);
             // for setTimeout(function, delay, param1, ...)
             cb = cat(cb, args.length && args);
             foo(cb, timeout);
@@ -63,9 +63,9 @@
         _define = root.define;
     if (_require && _define) {
         root.require = makeArgsTry(_require);
-        merge(root.require, _require);
+        _merge(root.require, _require);
         root.define = makeArgsTry(_define);
-        merge(root.define, _define);
+        _merge(root.define, _define);
     }
 
 
@@ -75,7 +75,7 @@
             var arg, args = [];
             for (var i = 0, l = arguments.length; i < l; i++) {
                 arg = arguments[i];
-                _isFunction(arg) && (arg = makeTry(arg));
+                _isFunction(arg) && (arg = cat(arg));
                 args.push(arg);
             }
             return foo.apply(self || this, args);
