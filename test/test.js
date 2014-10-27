@@ -1,4 +1,4 @@
-describe('require', function () {
+describe('tryjs', function () {
 
     var Callback = {
         cb: undefined,
@@ -7,7 +7,7 @@ describe('require', function () {
                 this.cb(e);
                 this.cb = undefined; 
             } else {
-                throw new Error('Something must error');
+                throw new Error('Something must be wrong');
             }
         },
         then: function (cb) {
