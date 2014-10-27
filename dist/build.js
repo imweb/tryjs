@@ -17,10 +17,10 @@
         return typeof foo === 'function';
     }
 
-    function cat(foo) {
+    function cat(foo, args) {
         return function() {
             try {
-                return foo.apply(this, arguments);
+                return foo.apply(this, args || arguments);
             } catch (e) {
                 _onthrow(e);
             }
@@ -41,12 +41,33 @@
 
     function catTimeout(foo) {
         return function(cb, timeout) {
-            cb = cat(cb);
-            try {
-                foo(cb, timeout);
-            } catch (e) {
-                _onthrow(e);
+
+            // for setTimeout(string, delay)
+
+            if (typeof cb === 'string') {
+
+
+                try {
+
+
+
+                    cb = new Function(cb);
+
+
+                } catch (e) {
+
+
+
+                    _onthrow(e);
+
+
+                }
+
             }
+
+            var args = [].slice.apply(arguments, 2);
+            cb = cat(cb, args.length && args);
+            foo(cb, timeout);
         }
     }
 
