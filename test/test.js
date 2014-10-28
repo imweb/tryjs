@@ -73,4 +73,19 @@ describe('tryjs', function () {
                 alert(ttt);
             }).click();
     });
+
+
+
+    it('if method of require or define attached attribute', function (done) {
+        Callback.then(function (e) {
+            expect(require.testA).to.equal('testA');
+            expect(define.testB).to.equal('testB');
+            done();
+        });
+        define('./test1', 'test');
+        require(['./test1'], function (test) {
+            // undefined
+            console.log(asf);
+        });
+    });
 });
