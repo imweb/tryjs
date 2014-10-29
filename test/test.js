@@ -78,12 +78,11 @@ describe('tryjs', function () {
 
     it('if method of require or define attached attribute', function (done) {
         Callback.then(function (e) {
-            expect(require.testA).to.equal('testA');
-            expect(define.testB).to.equal('testB');
+            expect(define.amd.jQuery).to.equal(true);
             done();
         });
-        define('./test1', 'test');
-        require(['./test1'], function (test) {
+        define('./test3', 'test');
+        require(['./test3'], function (test) {
             // undefined
             console.log(asf);
         });
