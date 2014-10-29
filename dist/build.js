@@ -8,6 +8,14 @@
         alert(e);
     };
 
+    try {
+        badjsIngore();
+    } catch (e) {
+        if (!e.stack) {
+            return;
+        }
+    }
+
     // merge
     function _merge(org, obj) {
         var key;
