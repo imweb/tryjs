@@ -76,7 +76,7 @@ describe('tryjs', function () {
 
 
 
-    it('if method of require or define attached attribute', function (done) {
+    it('if method of require or define attached attribute', function () {
         expect(define.amd.jQuery).to.equal(true);
         expect(require.testA).to.equal('testA');
         expect(define.testB).to.equal('testB');
