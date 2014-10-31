@@ -39,3 +39,13 @@ setTimeout(
 * jQuery event add
 * jQuery ajax
 * require & define
+
+为什么不对IE10以下版本进行包裹？
+---------------------------
+
+> 我们建议，在IE10以下版本通过window.onerror来捕获错误，基于以下几点原因：
+
+* IE10以下版本中catch的error不包含error.stack，跟踪方式比起window.onerror没有优势
+* 单论性能，window.onerror比try catch要好
+* IE10以下版本中window.setTimeout为只读方法，无法篡改替换
+* IE6、IE7、IE8中window.setTimeout和window.setInterval为Object，非Function，没有继承apply和call方法
