@@ -1,11 +1,9 @@
 ! function(root) {
 
     var _onthrow = function(e) {
-        root.console ?
-
-        console.error(e) :
-
-        alert(e);
+        root.Badjs(e, e.stack || window.location);
+        // throw a error and badjs will ignore this error
+        badjsIgnore();
     };
 
     try {

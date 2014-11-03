@@ -1,5 +1,5 @@
 {
     "AMD": true,
     "jQuery": true,
-    "throwTo": "default"
+    "throwTo": "badjs"
 }
