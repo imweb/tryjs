@@ -9,11 +9,11 @@
  */
 function makeArgsTry(foo, self) {
     return function () {
-        var arg, args = [];
+        var arg, newArg, args = [];
         for (var i = 0, l = arguments.length; i < l; i++) {
             arg = arguments[i];
-            _isFunction(arg) && (arg = cat(arg));
-            args.push(arg);
+            _isFunction(arg) && (newArg = cat(arg)) && (arg.tryWrap = newArg);
+            args.push(newArg);
         }
         return foo.apply(self || this, args);
     }
@@ -36,10 +36,20 @@ function makeObjTry(obj) {
 }
 
 var _add = root.jQuery.event.add,
-    _ajax = root.jQuery.ajax;
+    _ajax = root.jQuery.ajax,
+    _remove = root.jQuery.event.remove;
 
 if (_add) {
     root.jQuery.event.add = makeArgsTry(_add);
+    root.jQuery.event.remove = function () {
+        var arg, args = [];
+        for (var i = 0, l = arguments.length; i < l; i++) {
+            arg = arguments[i];
+            _isFunction(arg) && (arg = arg.tryWrap);
+            args.push(arg); 
+        }
+        return _remove.apply(this, args);
+    }
 }
 
 if (_ajax) {
