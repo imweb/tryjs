@@ -15,6 +15,10 @@ describe('tryjs', function () {
         }
     };
 
+    function onclick(e) {
+        alert(ttt);
+    }
+
     console.error = function (e) {
         Callback.done(e);
     };
@@ -79,12 +83,15 @@ describe('tryjs', function () {
                 done();
             });
             $('<a href="javascript:void(0);" id="test"></a>').appendTo(document.body)
-                .on('click', function (e) {
-                    alert(ttt);
-                }).click();
+                .on('click', onclick).click();
         });
 
-
+        it('should able to remove event listener', function (done) {
+            $('#test').off('click', onclick).click();
+            setTimeout(function () {
+                done();
+            }, 0)
+        });
 
         it('if method of require or define attached attribute', function () {
             expect(define.amd.jQuery).to.equal(true);

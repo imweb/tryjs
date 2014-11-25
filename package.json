@@ -1,7 +1,7 @@
 {
   "name": "tryjs",
   "version": "1.0.0",
-  "description": "tryjs =====",
+  "description": "tryjs",
   "main": "Gulpfile.js",
   "directories": {
     "test": "test"

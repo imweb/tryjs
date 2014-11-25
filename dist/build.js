@@ -1,9 +1,9 @@
 ! function(root) {
 
     var _onthrow = function(e) {
-        root.Badjs(e, e.stack || window.location);
-        // throw a error and badjs will ignore this error
-        badjsIgnore();
+        root.console ?
+            console.error(e) :
+            alert(e);
     };
 
     try {
@@ -90,10 +90,11 @@
      */
     function makeArgsTry(foo, self) {
         return function() {
-            var arg, args = [];
+            var arg, tmp, args = [];
             for (var i = 0, l = arguments.length; i < l; i++) {
                 arg = arguments[i];
-                _isFunction(arg) && (arg = cat(arg));
+                _isFunction(arg) && (tmp = cat(arg)) &&
+                    (arg.tryWrap = tmp) && (arg = tmp);
                 args.push(arg);
             }
             return foo.apply(self || this, args);
@@ -117,10 +118,20 @@
     }
 
     var _add = root.jQuery.event.add,
-        _ajax = root.jQuery.ajax;
+        _ajax = root.jQuery.ajax,
+        _remove = root.jQuery.event.remove;
 
     if (_add) {
         root.jQuery.event.add = makeArgsTry(_add);
+        root.jQuery.event.remove = function() {
+            var arg, args = [];
+            for (var i = 0, l = arguments.length; i < l; i++) {
+                arg = arguments[i];
+                _isFunction(arg) && (arg = arg.tryWrap);
+                args.push(arg);
+            }
+            return _remove.apply(this, args);
+        }
     }
 
     if (_ajax) {

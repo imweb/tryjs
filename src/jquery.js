@@ -9,11 +9,12 @@
  */
 function makeArgsTry(foo, self) {
     return function () {
-        var arg, newArg, args = [];
+        var arg, tmp, args = [];
         for (var i = 0, l = arguments.length; i < l; i++) {
             arg = arguments[i];
-            _isFunction(arg) && (newArg = cat(arg)) && (arg.tryWrap = newArg);
-            args.push(newArg);
+            _isFunction(arg) && (tmp = cat(arg)) && 
+                (arg.tryWrap = tmp) && (arg = tmp);
+            args.push(arg);
         }
         return foo.apply(self || this, args);
     }
