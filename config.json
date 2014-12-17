@@ -1,5 +1,8 @@
 {
+    // 是否使用AMD模块
     "AMD": true,
+    // 是否使用jQuery
     "jQuery": true,
+    // 出错函数处理方式
     "throwTo": "default"
 }

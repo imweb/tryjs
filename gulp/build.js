@@ -1,6 +1,13 @@
 var map = require('map-stream')
   , tpl = require('micro-tpl')
-  , config = require('../config');
+  , stripJsonComments = require('strip-json-comments')
+  , fs = require('fs')
+  , path = require('path')
+  , config = JSON.parse(
+    stripJsonComments(
+      fs.readFileSync(path.join(__dirname, '../config.json'), 'utf-8')
+    )
+  );
 
 function build(file, cb) {
   file.contents = new Buffer(tpl(file.contents.toString(), { 
